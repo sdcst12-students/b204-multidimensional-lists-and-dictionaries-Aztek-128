@@ -16,9 +16,24 @@ teamData = { i : {'gamesPlayed' : 0,'wins' : 0,'losses' : 0,'ties' : 0,'goalsFor
 for i in games:
     base = games[games.index(i)]["home"]
     teamData[base]["gamesPlayed"]+= 1
-    
+    if games[games.index(i)]["homeScore"] > games[games.index(i)]["awayScore"]:
+        teamData[base]["wins"] +=1
+    if games[games.index(i)]["homeScore"] < games[games.index(i)]["awayScore"]:
+        teamData[base]["losses"] +=1
+    if games[games.index(i)]["homeScore"] == games[games.index(i)]["awayScore"]:
+        teamData[base]["ties"] +=1
+    gone = games[games.index(i)]["away"]
+    teamData[gone]["gamesPlayed"] +=1
+    if games[games.index(i)]["awayScore"] > games[games.index(i)]["homeScore"]:
+        teamData[gone]["losses"] +=1
+    if games[games.index(i)]["awayScore"] < games[games.index(i)]["homeScore"]:
+        teamData[gone]["wins"] +=1
+    if games[games.index(i)]["awayScore"] == games[games.index(i)]["homeScore"]:
+        teamData[gone]["ties"] +=1
+    teamData[base]["goalsFor"] += games[games.index(i)]["homeScore"]
+    teamData[base]["goalsAgainst"] += games[games.index(i)]["awayScore"]
 
 def tests():
     assert teamData['BC']['gamesPlayed'] == 12
     assert teamData['BC']['wins'] == 5
-
+tests()

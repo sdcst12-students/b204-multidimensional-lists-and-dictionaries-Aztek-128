@@ -37,7 +37,7 @@ table = [
 
 def target(lvl,ac):
     
-    return lvl, [10-ac]
+    return table[lvl][10-ac]
 
 def tests():
     assert target(5,7) == 12
